@@ -18,16 +18,16 @@ bool isPalindrome(string PAL, int start_index, int end_index) //FIXME, won't ret
 	{
 		return true;
 	}
-	
-	else if(PAL.at(start_index) == PAL.at(end_index))
+
+	if(PAL.at(start_index) == PAL.at(end_index))
 	{
 		start_index = start_index + 1;
 		end_index = end_index - 1;
-		isPalindrome(PAL, start_index, end_index);
+		return isPalindrome(PAL, start_index, end_index);
 	}
-	
+
 	return false; //Gives warning when I use else, says I might not be returning anything.
-	
+
 }
 
 void removeSpaces(string &PAL) //This craziness removes spaces
@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
     int start_index = 0;
     int end_index = 0;
     string temp = "";
-    
+
     vector<string> allArgs(argv, argv + argc); //Vector of strings based on commandline
     temp = allArgs.at(1); //"./a.out" is allArgs.at(0)
     makeLowerCase(temp); //temp is either going to be a flag or the first word of the palindrome
@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
     FLAG = temp; //This detects a flag
     k = 1; //Makes the for loop start after the flag
     }
-    
+
     else
     k = 0; //Makes the for loop start after "./a.out" if there is no flag
 
@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
     	{
     		PAL = allArgs.at(k+1);
     	}
-    	else 
+    	else
     	{
     		PAL = PAL + " " + allArgs.at(i);
     	}
@@ -97,14 +97,14 @@ int main(int argc, char *argv[])
     	removeSpaces(PAL);
     }
 
-   if(isPalindrome(PAL, 0, (PAL.size() - 1))) //FIX ME: This is always returning false. 
+   if(isPalindrome(PAL, 0, (PAL.size() - 1))) //FIX ME: This is always returning false.
    {
    	cout << original << " is a palindrome." << endl;
    }
 
    else
    {
-   		cout << original << " is not a palindrome." << endl; 
+   		cout << original << " is not a palindrome." << endl;
    }
 
     return 0;
