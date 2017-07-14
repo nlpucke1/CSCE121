@@ -90,3 +90,7 @@ double Product::getPrice()
     double price = (totalPaid / (inventory + numSold)) * 1.25;
     return price;
 }
+std::ostream& operator<<(std::ostream& os, const Product& p)
+{
+
+}

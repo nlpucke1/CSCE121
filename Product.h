@@ -12,7 +12,7 @@ class Product {
     int inventory;
     int numSold;
     double totalPaid;
-    
+
 public:
     Product(int, std::string);
     int getID();
@@ -27,5 +27,5 @@ public:
     void addShipment(int, double);
     void reduceInventory(int);
 };
-//std::ostream& operator<<(std::ostream& os);
+std::ostream& operator<<(std::ostream& os, const Product& p);
 #endif

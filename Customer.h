@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include "Product.h"
 
 class Customer
 {
@@ -10,8 +11,8 @@ class Customer
     std::string name;
     bool credit;
     double balance;
-    //vector productsPurchased <Product>;
-    
+    std::vector<Product> productsPurcased;
+
 public:
     Customer(int, std::string, bool);
     int getID();
@@ -23,7 +24,7 @@ public:
     void processPayment(double);
     void processPurchase(double, Product);
     std::string getProductsPurchased();
-    
+
 };
-//std::ostream& operator<<(std::ostream& os);
+std::ostream& operator<<(std::ostream& os, const Customer& cust);
 #endif

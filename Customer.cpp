@@ -6,7 +6,7 @@
 using namespace std;
 
 Customer::Customer(int id, std::string name, bool credit) :
-id(id), name(name), credit(credit), balance(0.0) //productsPurcased(0)
+id(id), name(name), credit(credit), balance(0.0)
 {
     if (name.length()==0)
         throw runtime_error("Product name cannot be empty.");
@@ -47,7 +47,7 @@ void Customer::processPayment(double amount)
     if (amount < 0)
         throw runtime_error("Amount cannot be less than 0");
     balance += amount;
-    
+
 }
 
 void Customer::processPurchase(double amount, Product product)
@@ -56,7 +56,7 @@ void Customer::processPurchase(double amount, Product product)
     {
         balance -= amount;
     }
-    
+
     if(credit == false)
     {
         if(balance <= amount)
@@ -73,5 +73,6 @@ std::string getProductsPurchased()
     return
 }
 */
+std::ostream& operator<<(std::ostream& os, const Customer& cust){
 
-
+}
