@@ -2,32 +2,37 @@
 #include <string>
 #include <stdexcept>
 #include "Product.h"
-
 using namespace std;
 
 Product::Product(int id, string name) : id(id), name(name),
-inventory(0), numSold(0), totalPaid(0.0),  description("")
+inventory(0), numSold(0), totalPaid(0.0)
 {
     if (name.length()==0)
         throw runtime_error("Product name cannot be empty.");
 }
 
-int Product::getID()
+int Product::getID() const
 {
     return id;
 }
 
-void Product::setName(string name)
+string Product::getName() const
+{
+    return name;
+}
+
+std::string Product::setName(std::string name)
 {
     if (name.length()==0)
         throw runtime_error("Product name cannot be empty.");
     this->name = name; // could use an else, but it will only get here
     //   if there was not an exception!
+    return this->name;
 }
 
-string Product::getName()
+string Product::getDescription() const
 {
-    return name;
+    return description;
 }
 
 void Product::setDescription(string description)
@@ -36,12 +41,28 @@ void Product::setDescription(string description)
     {
         description = "No description.";
     }
-    this -> description = description;
+    this-> description = description;
 }
 
-string Product::getDescription()
+int Product::getNumberSold() const
 {
-    return description;
+    return numSold;
+}
+
+double Product::getTotalPaid() const
+{
+    return totalPaid;
+}
+
+int Product::getInventoryCount() const
+{
+    return inventory;
+}
+
+double Product::getPrice() const
+{
+    double price = (totalPaid / (inventory + numSold)) * 1.25;
+    return price;
 }
 
 void Product::addShipment(int quantity, double shipmentCost)
@@ -70,27 +91,13 @@ void Product::reduceInventory(int purchaseQuantity)
     numSold += purchaseQuantity;
 }
 
-int Product::getNumberSold()
+std::ostream& operator<<(std::ostream& os, Product& rhs)
 {
-    return numSold;
+    os << "Product Name: " << rhs.getName() << endl;
+    os << "Product ID: " << rhs.getID() << endl;
+    os << "Description: " << rhs.getDescription() << endl;
+    os << "Inventory: " << rhs.getInventoryCount() << endl;
+    os << "Total Paid: " << rhs.getTotalPaid() << endl;
+    return os;
 }
 
-double Product::getTotalPaid()
-{
-    return totalPaid;
-}
-
-int Product::getInventoryCount()
-{
-    return inventory;
-}
-
-double Product::getPrice()
-{
-    double price = (totalPaid / (inventory + numSold)) * 1.25;
-    return price;
-}
-std::ostream& operator<<(std::ostream& os, const Product& p)
-{
-
-}
