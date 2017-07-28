@@ -1,30 +1,20 @@
+#include "TemperatureDatabase.h"
+
 #include <iostream>
-#include <stdexcept>
-#include "Product.h"
-#include "Customer.h"
 using namespace std;
 
-int main(int argc, const char * argv[])
+int main(int argc, char** argv)
 {
-    try
+    if (argc < 3)
     {
-        Product p(1234, "Carrots");
-        p.setDescription("Orange.");
-        p.addShipment(25, 100);
-        cout << p << endl;
-        
-        Customer a(123, "Jessica Alba", true);
-        a.processPayment(1000);
-        a.processPurchase(200, p);
-        a.processPurchase(100, p);
-        
-        cout << a << endl;
-        
-    }
-    catch(runtime_error &e)
-    {
-        cout << "Exception caught: " <<  e.what() << endl;
+        cout << "Usage: " << argv[0] << " data_file query_file" << endl;
+        return 1;
     }
     
-    return 0;
+    else
+    {
+        TemperatureDatabase database;
+        database.loadData(argv[1]);
+        database.performQuery(argv[2]);
+    }
 }
