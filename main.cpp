@@ -10,11 +10,12 @@ int main(int argc, char** argv)
         cout << "Usage: " << argv[0] << " data_file query_file" << endl;
         return 1;
     }
-    
+
     else
     {
-        TemperatureDatabase database;
-        database.loadData(argv[1]);
-        database.performQuery(argv[2]);
+      cout << "here at least";
+      TemperatureDatabase database;
+      database.loadData(argv[1]);
+        //database.performQuery(argv[2]);
     }
 }

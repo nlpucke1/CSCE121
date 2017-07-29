@@ -7,6 +7,7 @@
 #include <fstream>
 using namespace std;
 
+
 void TemperatureDatabase::loadData(const string& filename)
 {
     string location = "";
@@ -22,9 +23,12 @@ void TemperatureDatabase::loadData(const string& filename)
             std::istringstream iss(line);
             if (!(iss >> location >> year >> month >> temperature)) { cout << "error" << endl; } // error
             records.insert(location, year, month, temperature);
-            cout << records << endl;
+            //cout << '\t' << location<< '\t' << year<< '\t' << month<< '\t' << temperature;
+            //cout << records << endl;
+            //cout << "line ended" << '\n';
             iss.clear();
         }
+        cout << records;
     }
 }
 
@@ -34,7 +38,7 @@ void TemperatureDatabase::performQuery(const string& filename)
     int startYear = 0;
     int endYear = 0;
     string avgOrMode = "";
-    
+
     ifstream infs(filename);
     if(infs.is_open())
     {
@@ -70,7 +74,7 @@ string TemperatureDatabase::getAverage(LinkedList ll, string location, int start
     Node* head = ll.getHead();
     Node* curr = head;
     string unknown = "Unknown";
-    
+
     while(curr != nullptr)
     {
         if(curr->value == location && curr->year == startYear)
@@ -99,7 +103,7 @@ string TemperatureDatabase::getMode(LinkedList ll, string location, int startYea
     Node* head = ll.getHead();
     Node* curr = head;
     string unknown = "Unknown";
-    
+
     while(curr != nullptr)
     {
         if(curr->value == location && curr->year == startYear)
@@ -141,17 +145,3 @@ string TemperatureDatabase::getMode(LinkedList ll, string location, int startYea
     }
     return unknown;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -38,7 +38,7 @@ LinkedList& LinkedList::operator=(const LinkedList& source)
         {
             return *this;
         }
-        
+
         if(source.getTail() == source.getHead())
         {
             head = new Node(source.getHead()->value);
@@ -74,33 +74,36 @@ void LinkedList::insert(string location, int year, int month, double temperature
 {
     Node* new_node = new Node(/*std::stoi*/location,year,month,temperature);
     Node* currNode = this->head;
+    //cout << "Made to insert";
     /*Verify correct location, year, month*/
     if(year < 1800 || year > 2017)
     {
         throw runtime_error("Error: invalid year.");
     }
-    
+
     if(month < 1 || month > 12)
     {
         throw runtime_error("Error: invalid month.");
     }
-    
+
     if(temperature < -50.0)
     {
-        
+
     }
-    
+
     if(this->head == nullptr)
     {
         this->head = new_node;
+        return;
     }
-    
+
     else if (new_node < (this->head))
     {
         new_node->next = this->head;
         this->head = new_node;
+        return;
     }
-    
+
     else
     {
         while(currNode != nullptr)
@@ -109,18 +112,20 @@ void LinkedList::insert(string location, int year, int month, double temperature
             {
                 currNode->next = new_node;
                 new_node->next = nullptr;
+                return;
             }
             else if(new_node < (currNode->next))
             {
                 new_node->next = currNode->next;
                 currNode->next = new_node;
+                return;
             }
             else
             {
                 currNode = currNode->next;
             }
         }
-    
+      return;
     }
 }
 
@@ -159,4 +164,3 @@ ostream& operator<<(ostream& os, const LinkedList& ll)
     }
     return os;
 }
-
